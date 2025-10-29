@@ -1,0 +1,20 @@
+Accuracy: 0.9606
+Precision_micro: 0.9835
+Recall_micro: 0.9868
+F1_micro: 0.9851
+F1_macro: 0.9845
+Precision_ÜCRET İADESİ: 0.9858
+Recall_ÜCRET İADESİ: 0.9804
+F1_ÜCRET İADESİ: 0.9831
+Precision_BAGAJ: 0.9937
+Recall_BAGAJ: 0.9989
+F1_BAGAJ: 0.9963
+Precision_MÜŞTERİ HİZMETLERİ: 0.9723
+Recall_MÜŞTERİ HİZMETLERİ: 0.9670
+F1_MÜŞTERİ HİZMETLERİ: 0.9697
+Precision_UYGULAMA/TEKNİK: 0.9721
+Recall_UYGULAMA/TEKNİK: 0.9865
+F1_UYGULAMA/TEKNİK: 0.9792
+Precision_RÖTAR: 0.9904
+Recall_RÖTAR: 0.9976
+F1_RÖTAR: 0.9940
