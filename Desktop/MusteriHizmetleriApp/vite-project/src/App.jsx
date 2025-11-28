@@ -5,10 +5,11 @@ import Dashboard from './pages/Dashboard';
 import AutoComplaint from './pages/AutoComplaint';
 import AdminList from './pages/AdminList';
 import ResolvedComplaints from './pages/ResolvedComplaints';
-
+import Login from './pages/Login';
 
 export default function App() {
   const [activePage, setActivePage] = useState('Dashboard');
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // Login kontrolü
 
   const renderPage = () => {
     switch (activePage) {
@@ -16,18 +17,23 @@ export default function App() {
       case 'NewTickets': return <AutoComplaint />;
       case 'AdminList': return <AdminList />;
       case 'ResolvedComplaints': return <ResolvedComplaints />;
+      case 'Login': return <Login />;
       default: return <Dashboard />;
     }
   };
 
+  // Eğer giriş yapılmamışsa Login sayfasını göster
+  if (!isLoggedIn) {
+    return <Login onLogin={() => setIsLoggedIn(true)} />;
+  }
+
+  // Giriş yapıldıktan sonra normal layout
   return (
     <div style={{ display: 'flex', minHeight: '100vh', width: '100vw' }}>
-      {/* Sidebar */}
       <Sidebar activePage={activePage} setActivePage={setActivePage} />
 
-      {/* Main Content */}
       <div style={{
-        marginLeft: '250px',   // sidebar genişliği kadar boşluk bırak
+        marginLeft: '250px',
         flex: 1,
         display: 'flex',
         flexDirection: 'column',

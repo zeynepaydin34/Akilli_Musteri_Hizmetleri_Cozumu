@@ -25,6 +25,29 @@ export default function AutoComplaint() {
 
   const selectedComplaint = complaints[currentIndex] || null;
 
+  // 🧠 AI tahmini çağır
+  useEffect(() => {
+    if (!selectedComplaint) return;
+
+    const fetchAIAnalysis = async () => {
+      try {
+        const res = await fetch("http://localhost:5001/analyze", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: selectedComplaint.content, message_id: "TEST" })
+        });
+        const data = await res.json();
+        if (data.predicted_labels) setSelectedCategories(data.predicted_labels.slice(0,2));
+        if (data.predicted_sentiment) setSelectedEmotion(data.predicted_sentiment);
+        if (data.auto_reply) setAutoReply(data.auto_reply);
+      } catch (err) {
+        console.error("AI fetch error:", err);
+      }
+    };
+
+    fetchAIAnalysis();
+  }, [selectedComplaint]);
+
   const handleCategoryChange = (category) => {
     if (selectedCategories.includes(category)) {
       setSelectedCategories(selectedCategories.filter((c) => c !== category));
@@ -52,7 +75,8 @@ export default function AutoComplaint() {
       reply: autoReply,
     });
 
-    alert("Yanıt (simülasyon) gönderildi!");
+    alert("Yanıt gönderildi! (simülasyon)");
+    // Burada istersen backend’e POST ile kaydedebilirsin
   };
 
   const handleNext = () => {

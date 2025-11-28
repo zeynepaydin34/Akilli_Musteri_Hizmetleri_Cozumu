@@ -3,8 +3,7 @@ import db from "../config/db.js";
 
 const router = express.Router();
 
-// Tüm mesajları getir (username ile birlikte)
-router.get("/messages", async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         const result = await db.query(
             `SELECT 
